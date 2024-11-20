@@ -5,6 +5,10 @@ Integrantes:
 -Stephanie Monge Ortiz C35035
 -Melissa
 
+g++ -I include -o bin/Proyecto2 src/main.cpp src/archivo.cpp src/procesos.cpp 
+
+bin\Proyecto2.exe
+
 Compilar(for now):
 1. Me ubico en ..\Proyecto2
 2.g++ -I include -o bin/Proyecto2 src/main.cpp src/archivo.cpp src/procesos.cpp

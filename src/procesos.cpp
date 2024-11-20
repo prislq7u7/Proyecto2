@@ -37,6 +37,9 @@ ProcesoNormal::ProcesoNormal(const string& nombre, int prioridad)
 
 void ProcesoNormal::ejecutarInstruccion() {
     cout << "Ejecutando instrucción normal en el proceso: " << nombre << endl;
+    // Simulación de ejecución completa
+    cambiarEstado("Finalizado");
+    cout << getEstado() << endl;
 }
 
 //ProcesoEentrada/Salida
@@ -45,6 +48,8 @@ ProcesoES::ProcesoES(const string& nombre, int prioridad)
 
 void ProcesoES::ejecutarInstruccion() {
     cout << "Inicio de operación de E/S en el proceso: " << nombre << endl;
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    this_thread::sleep_for(chrono::milliseconds(1500)); // Simula operación de E/S
     cout << "Fin de operación de E/S en el proceso: " << nombre << endl;
+    cambiarEstado("Finalizado");
+    cout << getEstado() << endl;
 }
