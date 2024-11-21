@@ -1,0 +1,7 @@
+proceso test1 5
+instruccion 1
+fin proceso
+
+proceso test2 8
+instruccion 2
+fin proceso

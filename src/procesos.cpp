@@ -36,20 +36,23 @@ ProcesoNormal::ProcesoNormal(const string& nombre, int prioridad)
     : ProcesoBase(nombre, prioridad) {}
 
 void ProcesoNormal::ejecutarInstruccion() {
-    cout << "Ejecutando instrucción normal en el proceso: " << nombre << endl;
-    // Simulación de ejecución completa
-    cambiarEstado("Finalizado");
-    cout << getEstado() << endl;
+    static int instruccionesEjecutadas = 0;
+    cout << "Ejecutando instrucción normal del proceso: " << nombre << "\n";
+    instruccionesEjecutadas++;
+    if (instruccionesEjecutadas >= 3) { // Ejemplo: termina tras 3 instrucciones
+        cambiarEstado("finalizado");
+    }
 }
+
 
 //ProcesoEentrada/Salida
 ProcesoES::ProcesoES(const string& nombre, int prioridad)
     : ProcesoBase(nombre, prioridad) {}
 
 void ProcesoES::ejecutarInstruccion() {
-    cout << "Inicio de operación de E/S en el proceso: " << nombre << endl;
+    cout << "Inicio de operación de E/S en el proceso: " << nombre << "\n";
     this_thread::sleep_for(chrono::milliseconds(1500)); // Simula operación de E/S
-    cout << "Fin de operación de E/S en el proceso: " << nombre << endl;
-    cambiarEstado("Finalizado");
-    cout << getEstado() << endl;
+    cambiarEstado("finalizado");
+    cout << "Fin de operación de E/S en el proceso: " << nombre << "\n";
 }
+
