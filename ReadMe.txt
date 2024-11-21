@@ -3,7 +3,7 @@ Proyecto #2
 Integrantes:
 -Priscilla López Quesada C14301
 -Stephanie Monge Ortiz C35035
--Melissa
+-Melissa Garita Chacón C23186
 
 g++ -I include -o bin/Proyecto2 src/main.cpp src/archivo.cpp src/procesos.cpp 
 
