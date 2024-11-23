@@ -9,7 +9,7 @@ Simulador::Simulador() {}
 Simulador::~Simulador() {}
 
 
-//función: leer procesos desde un archivo
+//funcion: leer procesos desde un archivo
 void Simulador::leerArchivoProcesos(const string& nombreArchivo, Cola<ProcesoBase>& cola) {
     ifstream archivo(nombreArchivo);//abrir archivo
     if (!archivo.is_open()) {
@@ -21,8 +21,8 @@ void Simulador::leerArchivoProcesos(const string& nombreArchivo, Cola<ProcesoBas
     //leer línea por línea
     while (getline(archivo, linea)) {
         if (linea.find("proceso") == 0) {//detectar proceso
-            size_t posNombre = linea.find(' ') + 1;//posición del nombre
-            size_t posPrioridad = linea.rfind(' ');//posición de la prioridad
+            size_t posNombre = linea.find(' ') + 1;//posicion del nombre
+            size_t posPrioridad = linea.rfind(' ');//posicion de la prioridad
             string nombreProceso = linea.substr(posNombre, posPrioridad - posNombre);
             int prioridad = stoi(linea.substr(posPrioridad + 1));
 

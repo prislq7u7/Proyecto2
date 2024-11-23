@@ -5,7 +5,7 @@ Integrantes:
 -Stephanie Monge Ortiz C35035
 -Melissa Garita Chacón C23186
 
-g++ -I include -o bin/Proyecto2 src/main.cpp src/archivo.cpp src/procesos.cpp 
+g++ -I include -o bin/Proyecto2 src/main.cpp src/archivo.cpp src/procesos.cpp src/simulador.cpp
 
 bin\Proyecto2.exe
 

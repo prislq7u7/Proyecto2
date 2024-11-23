@@ -1,14 +1,14 @@
 #ifndef _PLANIFICADOR_H_
 #define _PLANIFICADOR_H_
 
-#define WIN32_LEAN_AND_MEAN  //excluye partes innecesarias de la cabecera windows.h
-#include <windows.h>
-
 #include "cola.h"
 #include "procesos.h"
 #include <iostream>
 #include <string>
 #include <fstream> 
+#include <thread>
+#include <chrono>
+
 
 using namespace std;
 
@@ -36,22 +36,20 @@ void Planificador<T>::agregarProceso(T* proceso) {
 }
 
 //Round Robin
-
-
 template <typename T>
-std::string Planificador<T>::ejecutarRoundRobin() {
-    std::string nombreArchivo = "resultado_round_robin.txt";
-    std::ofstream archivo(nombreArchivo); // Crea/abre el archivo de texto
+string Planificador<T>::ejecutarRoundRobin() {
+    string nombreArchivo = "resultado_round_robin.txt";
+    ofstream archivo(nombreArchivo); // Crea/abre el archivo de texto
 
     if (!archivo.is_open()) {
-        std::cerr << "Error al abrir el archivo para escribir.\n";
+        cerr << "Error al abrir el archivo para escribir.\n";
         return "";
     }
 
     int iteracion = 0; // Para contar las iteraciones
     while (true) {
-        archivo << "Iteración: " << ++iteracion << "\n";
-        cout << "Iteración: " << iteracion << "\n";
+        archivo << "Iteracion: " << ++iteracion << "\n";
+        cout << "Iteracion: " << iteracion << "\n";
 
         archivo << "Estado actual de la cola:\n" << colaProcesos.toString() << "\n";
         cout << "Estado actual de la cola:\n" << colaProcesos.toString() << "\n";
@@ -68,36 +66,54 @@ std::string Planificador<T>::ejecutarRoundRobin() {
         cout << "Proceso actual: " << proceso->getNombre() << " (Estado: " << proceso->getEstado() << ")\n";
 
         if (proceso->getEstado() == "finalizado") {
-            archivo << "Proceso " << proceso->getNombre() << " ya finalizado. No será procesado nuevamente.\n";
-            cout << "Proceso " << proceso->getNombre() << " ya finalizado. No será procesado nuevamente.\n";
+            archivo << "Proceso " << proceso->getNombre() << " ya finalizado\n";
+            cout << "Proceso " << proceso->getNombre() << " ya finalizado\n";
             continue;
         }
 
-        proceso->cambiarEstado("en ejecución");
-        archivo << "Ejecutando proceso: " << proceso->getNombre() << "\n";
-        cout << "Ejecutando proceso: " << proceso->getNombre() << "\n";
+        proceso->cambiarEstado("en ejecucion");
+        proceso->cambiarSubestado("activo");
 
-        // Ejecutar el proceso durante el quantum o hasta que termine
+        archivo << "Ejecutando proceso: " << proceso->getNombre() << "\n"
+                << "Estado actual: " << proceso->getEstado() << "\n"
+                << "Subestado: " << proceso->getSubestado() << "\n";
+
+        cout << "Ejecutando proceso: " << proceso->getNombre() << "\n"
+            << "Estado actual: " << proceso->getEstado() << "\n"
+            << "Subestado: " << proceso->getSubestado() << "\n";
+
+
+        // ejecuta el proceso durante el quantum o hasta que termine
         for (int i = 0; i < quantum; ++i) {
-            archivo << "Ejecutando instrucción " << (i + 1) << " de " << quantum << "\n";
-            cout << "Ejecutando instrucción " << (i + 1) << " de " << quantum << "\n";
+            archivo << "Ejecutando instruccion " << (i + 1) << " de " << quantum << "\n";
+            cout << "Ejecutando instruccion " << (i + 1) << " de " << quantum << "\n";
 
             if (proceso->getEstado() == "finalizado") {
-                archivo << "Proceso " << proceso->getNombre() << " ha finalizado durante la ejecución.\n";
-                cout << "Proceso " << proceso->getNombre() << " ha finalizado durante la ejecución.\n";
+                archivo << "Proceso " << proceso->getNombre() << " ha finalizado durante la ejecucion\n";
+                cout << "Proceso " << proceso->getNombre() << " ha finalizado durante la ejecucion\n";
                 break;
             }
             proceso->ejecutarInstruccion();
-            Sleep(100); // Simula 1 segundo de ejecución
+            this_thread::sleep_for(chrono::milliseconds(1000)); // Simula 1 segundo de ejecucion
         }
 
-        if (proceso->getEstado() != "finalizado") {
-            archivo << "Proceso " << proceso->getNombre() << " no terminó. Cambiando estado a 'listo'.\n";
-            cout << "Proceso " << proceso->getNombre() << " no terminó. Cambiando estado a 'listo'.\n";
+            if (proceso->getEstado() != "finalizado") {
+            proceso->cambiarSubestado("cortado");
+
+            archivo << "Proceso " << proceso->getNombre() << " no termino\n"
+                    << "Estado actual: " << proceso->getEstado() << "\n"
+                    << "Subestado: " << proceso->getSubestado() << "\n";
+
+            cout << "Proceso " << proceso->getNombre() << " no termino\n"
+                << "Estado actual: " << proceso->getEstado() << "\n"
+                << "Subestado: " << proceso->getSubestado() << "\n";
+
             proceso->cambiarEstado("listo");
             colaProcesos.push(proceso);
-        } else {
-            archivo << "Proceso " << proceso->getNombre() << " ha sido completado.\n";
+
+            } else {
+            proceso->cambiarSubestado("");
+            archivo << "Proceso " << proceso->getNombre() << " ha sido completado\n";
             cout << "Proceso " << proceso->getNombre() << " ha sido completado.\n";
         }
     }
@@ -113,57 +129,68 @@ std::string Planificador<T>::ejecutarRoundRobin() {
 //por Prioridad
 template <typename T>
 void Planificador<T>::ejecutarPorPrioridad() {
-    cout << "Ordenando procesos por prioridad...\n";
+    cout << "Ordenando procesos por prioridad\n";
     Cola<T> colaOrdenada;
 
+    // extrae todos los procesos de la cola original
     while (true) {
         T* procesoActual = colaProcesos.pop();
         if (procesoActual == nullptr) {
             break;
         }
+        cout << "Insertando proceso: " << procesoActual->getNombre() 
+             << " con prioridad " << procesoActual->getPrioridad() << "\n";
 
-        cout << "Insertando proceso: " << procesoActual->getNombre() << " con prioridad " << procesoActual->getPrioridad() << "\n";
-
+        Nodo<T>* nuevoNodo = new Nodo<T>(procesoActual);
         if (colaOrdenada.cabeza == nullptr) {
-            colaOrdenada.push(procesoActual);
+            colaOrdenada.cabeza = nuevoNodo;
         } else {
             Nodo<T>* anterior = nullptr;
             Nodo<T>* actual = colaOrdenada.cabeza;
-            while (actual != nullptr && actual->dato->getPrioridad() >= procesoActual->getPrioridad()) {
+            while (actual != nullptr && actual->dato->getPrioridad() <= procesoActual->getPrioridad()) {
                 anterior = actual;
                 actual = actual->sig;
             }
-            Nodo<T>* nuevoNodo = new Nodo<T>(procesoActual);
+
             if (anterior == nullptr) {
+                // Insercion al inicio de la lista
                 nuevoNodo->sig = colaOrdenada.cabeza;
                 colaOrdenada.cabeza = nuevoNodo;
             } else {
+                // Insercion en el medio o al final
                 nuevoNodo->sig = actual;
                 anterior->sig = nuevoNodo;
             }
         }
     }
 
-    cout << "Ejecutando procesos en orden de prioridad...\n";
+    // ejecuta procesos en orden de prioridad
+    cout << "Ejecutando procesos en orden de prioridad\n";
     while (true) {
         T* proceso = colaOrdenada.pop();
         if (proceso == nullptr) {
-            cout << "Todos los procesos han sido ejecutados.\n";
+            cout << "Todos los procesos han sido ejecutados\n";
             break;
         }
 
-        if (proceso->getEstado() != "finalizado") {
-            cout << "Ejecutando proceso: " << proceso->getNombre() << " (Prioridad: " << proceso->getPrioridad() << ")\n";
+        cout << "Ejecutando proceso: " << proceso->getNombre() 
+             << " (Prioridad: " << proceso->getPrioridad() << ")\n";
 
-            while (proceso->getEstado() != "finalizado") {
-                proceso->ejecutarInstruccion();
-                Sleep(100); // Simula 1 ciclo por instrucción
-            }
+        proceso->cambiarEstado("en ejecucion");
+        proceso->cambiarSubestado("activo");
+        cout << "Estado actual: " << proceso->getEstado() << " "
+        << "Subestado: " << proceso->getSubestado() << endl;
 
-            cout << "Proceso " << proceso->getNombre() << " finalizado.\n";
+        while (proceso->getEstado() != "finalizado") {
+            proceso->ejecutarInstruccion();
+            this_thread::sleep_for(chrono::milliseconds(1000)); // Simula 1 ciclo por instruccion
         }
+
+        proceso->cambiarSubestado("");
+        cout << "Proceso " << proceso->getNombre() << " finalizado\n";
     }
-    cout << "Ejecución por prioridad completada.\n";
+
+    cout << "Ejecucion por prioridad completada\n";
 }
 
 

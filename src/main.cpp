@@ -14,7 +14,7 @@ int main() {
     Planificador<ProcesoBase> planificador(quantum);
 
     string nombreArchivo;
-    cout << "Ingrese el nombre del archivo a abrir (con extensión): ";
+    cout << "Ingrese el nombre del archivo a abrir (con extension): ";
     cin >> nombreArchivo;
     //Simulador simulador;
    // simulador.leerArchivoProcesos(nombreArchivo, cola);
@@ -27,15 +27,15 @@ int main() {
     //sacar y ejecutar procesos
     ProcesoBase* proceso = nullptr;
     while ((proceso = cola.pop()) != nullptr) {
-        proceso->ejecutarInstruccion();  //ejecutar instrucción del proceso
+        proceso->ejecutarInstruccion();  //ejecutar instruccion del proceso
         planificador.agregarProceso(proceso);
     }
 
     int opcion;
-    cout << "\nSeleccione el algoritmo de planificación:\n";
+    cout << "\nSeleccione el algoritmo de planificacion:\n";
     cout << "1. Round Robin\n";
-    cout << "2. Ejecución por Prioridad\n";
-    cout << "Ingrese su opción (1 o 2): ";
+    cout << "2. Ejecucion por Prioridad\n";
+    cout << "Ingrese su opcion (1 o 2): ";
     cin >> opcion;
     string resultado;
     if (opcion == 1) {

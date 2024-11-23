@@ -1,7 +1,7 @@
-Iteración: 1
+Iteracion: 1
 Estado actual de la cola:
-Elemento: Nombre: nombre1, Prioridad: 4, Estado: Listo
-Elemento: Nombre: nombre2, Prioridad: 7, Estado: Listo
+Elemento: Nombre: nombre1, Prioridad: 4, Estado: Listo, Subestado: Cortado
+Elemento: Nombre: nombre2, Prioridad: 7, Estado: Listo, Subestado: Cortado
 Elemento: Nombre: nombre3, Prioridad: 5, Estado: finalizado
 Elemento: Nombre: nombre4, Prioridad: 8, Estado: finalizado
 Elemento: Nombre: nombre5, Prioridad: 1, Estado: finalizado
@@ -13,13 +13,15 @@ Elemento: Nombre: nombre10, Prioridad: 9, Estado: finalizado
 
 Proceso actual: nombre1 (Estado: Listo)
 Ejecutando proceso: nombre1
-Ejecutando instrucción 1 de 5
-Ejecutando instrucción 2 de 5
-Proceso nombre1 ha finalizado durante la ejecución.
-Proceso nombre1 ha sido completado.
-Iteración: 2
+Estado actual: en ejecucion
+Subestado: activo
+Ejecutando instruccion 1 de 5
+Ejecutando instruccion 2 de 5
+Proceso nombre1 ha finalizado durante la ejecucion
+Proceso nombre1 ha sido completado
+Iteracion: 2
 Estado actual de la cola:
-Elemento: Nombre: nombre2, Prioridad: 7, Estado: Listo
+Elemento: Nombre: nombre2, Prioridad: 7, Estado: Listo, Subestado: Cortado
 Elemento: Nombre: nombre3, Prioridad: 5, Estado: finalizado
 Elemento: Nombre: nombre4, Prioridad: 8, Estado: finalizado
 Elemento: Nombre: nombre5, Prioridad: 1, Estado: finalizado
@@ -31,11 +33,13 @@ Elemento: Nombre: nombre10, Prioridad: 9, Estado: finalizado
 
 Proceso actual: nombre2 (Estado: Listo)
 Ejecutando proceso: nombre2
-Ejecutando instrucción 1 de 5
-Ejecutando instrucción 2 de 5
-Proceso nombre2 ha finalizado durante la ejecución.
-Proceso nombre2 ha sido completado.
-Iteración: 3
+Estado actual: en ejecucion
+Subestado: activo
+Ejecutando instruccion 1 de 5
+Ejecutando instruccion 2 de 5
+Proceso nombre2 ha finalizado durante la ejecucion
+Proceso nombre2 ha sido completado
+Iteracion: 3
 Estado actual de la cola:
 Elemento: Nombre: nombre3, Prioridad: 5, Estado: finalizado
 Elemento: Nombre: nombre4, Prioridad: 8, Estado: finalizado
@@ -47,8 +51,8 @@ Elemento: Nombre: nombre9, Prioridad: 3, Estado: finalizado
 Elemento: Nombre: nombre10, Prioridad: 9, Estado: finalizado
 
 Proceso actual: nombre3 (Estado: finalizado)
-Proceso nombre3 ya finalizado. No será procesado nuevamente.
-Iteración: 4
+Proceso nombre3 ya finalizado
+Iteracion: 4
 Estado actual de la cola:
 Elemento: Nombre: nombre4, Prioridad: 8, Estado: finalizado
 Elemento: Nombre: nombre5, Prioridad: 1, Estado: finalizado
@@ -59,8 +63,8 @@ Elemento: Nombre: nombre9, Prioridad: 3, Estado: finalizado
 Elemento: Nombre: nombre10, Prioridad: 9, Estado: finalizado
 
 Proceso actual: nombre4 (Estado: finalizado)
-Proceso nombre4 ya finalizado. No será procesado nuevamente.
-Iteración: 5
+Proceso nombre4 ya finalizado
+Iteracion: 5
 Estado actual de la cola:
 Elemento: Nombre: nombre5, Prioridad: 1, Estado: finalizado
 Elemento: Nombre: nombre6, Prioridad: 2, Estado: finalizado
@@ -70,8 +74,8 @@ Elemento: Nombre: nombre9, Prioridad: 3, Estado: finalizado
 Elemento: Nombre: nombre10, Prioridad: 9, Estado: finalizado
 
 Proceso actual: nombre5 (Estado: finalizado)
-Proceso nombre5 ya finalizado. No será procesado nuevamente.
-Iteración: 6
+Proceso nombre5 ya finalizado
+Iteracion: 6
 Estado actual de la cola:
 Elemento: Nombre: nombre6, Prioridad: 2, Estado: finalizado
 Elemento: Nombre: nombre7, Prioridad: 6, Estado: finalizado
@@ -80,8 +84,8 @@ Elemento: Nombre: nombre9, Prioridad: 3, Estado: finalizado
 Elemento: Nombre: nombre10, Prioridad: 9, Estado: finalizado
 
 Proceso actual: nombre6 (Estado: finalizado)
-Proceso nombre6 ya finalizado. No será procesado nuevamente.
-Iteración: 7
+Proceso nombre6 ya finalizado
+Iteracion: 7
 Estado actual de la cola:
 Elemento: Nombre: nombre7, Prioridad: 6, Estado: finalizado
 Elemento: Nombre: nombre8, Prioridad: 0, Estado: finalizado
@@ -89,29 +93,29 @@ Elemento: Nombre: nombre9, Prioridad: 3, Estado: finalizado
 Elemento: Nombre: nombre10, Prioridad: 9, Estado: finalizado
 
 Proceso actual: nombre7 (Estado: finalizado)
-Proceso nombre7 ya finalizado. No será procesado nuevamente.
-Iteración: 8
+Proceso nombre7 ya finalizado
+Iteracion: 8
 Estado actual de la cola:
 Elemento: Nombre: nombre8, Prioridad: 0, Estado: finalizado
 Elemento: Nombre: nombre9, Prioridad: 3, Estado: finalizado
 Elemento: Nombre: nombre10, Prioridad: 9, Estado: finalizado
 
 Proceso actual: nombre8 (Estado: finalizado)
-Proceso nombre8 ya finalizado. No será procesado nuevamente.
-Iteración: 9
+Proceso nombre8 ya finalizado
+Iteracion: 9
 Estado actual de la cola:
 Elemento: Nombre: nombre9, Prioridad: 3, Estado: finalizado
 Elemento: Nombre: nombre10, Prioridad: 9, Estado: finalizado
 
 Proceso actual: nombre9 (Estado: finalizado)
-Proceso nombre9 ya finalizado. No será procesado nuevamente.
-Iteración: 10
+Proceso nombre9 ya finalizado
+Iteracion: 10
 Estado actual de la cola:
 Elemento: Nombre: nombre10, Prioridad: 9, Estado: finalizado
 
 Proceso actual: nombre10 (Estado: finalizado)
-Proceso nombre10 ya finalizado. No será procesado nuevamente.
-Iteración: 11
+Proceso nombre10 ya finalizado
+Iteracion: 11
 Estado actual de la cola:
 
 La cola está vacía. Terminando Round Robin.

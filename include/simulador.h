@@ -19,7 +19,7 @@ public:
     Simulador();
     ~Simulador(); 
 
-//función: leer procesos desde un archivo
+//funcion: leer procesos desde un archivo
 void leerArchivoProcesos(const string& nombreArchivo, Cola<ProcesoBase>& cola);
 string compararArchivos(const std::string& archivoEsperado, const std::string& archivoSalida);
 };

@@ -10,7 +10,8 @@ class ProcesoBase {
 protected:
     string nombre;  //nombre proceso
     int prioridad;  //prioridad proceso (0-10)
-    string estado;  //estado: listo, en ejecución, bloqueado, finalizado
+    string estado;  //estado: listo, en ejecucion, bloqueado, finalizado
+    string subestado; //Subestados cuando está 'en ejecución': ctivo, cortado
 
 public:
     ProcesoBase(const string& nombre, int prioridad);
@@ -21,13 +22,15 @@ public:
 
     //método normal
     void cambiarEstado(const string& nuevoEstado);
+    void cambiarSubestado (const string& nuevoEstado);
 
     //getters
     string getNombre() const;
     int getPrioridad() const;
     string getEstado() const;
+    string getSubestado() const;
 
-    //obtener la información como string
+    //obtener la informacion como string
     string toString() const;
 };
 

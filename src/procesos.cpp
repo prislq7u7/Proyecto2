@@ -15,6 +15,9 @@ void ProcesoBase::cambiarEstado(const string& nuevoEstado) {
     estado = nuevoEstado;
 }
 
+void ProcesoBase::cambiarSubestado (const string& nuevoSubestado){
+    subestado = nuevoSubestado;
+}
 string ProcesoBase::getNombre() const {
     return nombre;
 }
@@ -27,8 +30,14 @@ string ProcesoBase::getEstado() const {
     return estado;
 }
 
+string ProcesoBase::getSubestado() const {
+    return subestado;
+}
+
+
 string ProcesoBase::toString() const {
-    return "Nombre: " + nombre + ", Prioridad: " + to_string(prioridad) + ", Estado: " + estado;
+    return "Nombre: " + nombre + ", Prioridad: " + to_string(prioridad) + ", Estado: " 
+    + estado + (subestado.empty() ? "" : ", Subestado: " + subestado);
 }
 
 //ProcesoNormal
@@ -37,10 +46,19 @@ ProcesoNormal::ProcesoNormal(const string& nombre, int prioridad)
 
 void ProcesoNormal::ejecutarInstruccion() {
     static int instruccionesEjecutadas = 0;
-    cout << "Ejecutando instrucción normal del proceso: " << nombre << "\n";
+    cambiarEstado("En ejecucion");
+    cambiarSubestado("Activo");
+
+    cout << "Ejecutando instruccion normal del proceso: " << nombre << "\n";
     instruccionesEjecutadas++;
+
     if (instruccionesEjecutadas >= 3) { // Ejemplo: termina tras 3 instrucciones
         cambiarEstado("finalizado");
+        cambiarSubestado("");
+    } else {
+       
+        cambiarSubestado("Cortado");
+        cambiarEstado("Listo"); 
     }
 }
 
@@ -50,9 +68,13 @@ ProcesoES::ProcesoES(const string& nombre, int prioridad)
     : ProcesoBase(nombre, prioridad) {}
 
 void ProcesoES::ejecutarInstruccion() {
-    cout << "Inicio de operación de E/S en el proceso: " << nombre << "\n";
-    this_thread::sleep_for(chrono::milliseconds(1500)); // Simula operación de E/S
+    cambiarEstado("En ejecucion");
+    cambiarSubestado("Activo");
+
+    cout << "Inicio de operacion de E/S en el proceso: " << nombre << "\n";
+    this_thread::sleep_for(chrono::milliseconds(1500)); // Simula operacion de E/S
     cambiarEstado("finalizado");
-    cout << "Fin de operación de E/S en el proceso: " << nombre << "\n";
+    cambiarSubestado("");
+    cout << "Fin de operacion de E/S en el proceso: " << nombre << "\n";
 }
 
