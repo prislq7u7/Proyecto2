@@ -2,6 +2,7 @@
 #include "..\include\procesos.h"
 #include "..\include\archivo.h"
 #include "..\include\planificador.h"
+#include "..\include\simulador.h"
 
 #include <iostream>
 
@@ -15,7 +16,8 @@ int main() {
     string nombreArchivo;
     cout << "Ingrese el nombre del archivo a abrir (con extensión): ";
     cin >> nombreArchivo;
-
+    //Simulador simulador;
+   // simulador.leerArchivoProcesos(nombreArchivo, cola);
     //leer proceso desde el archivo
     leerArchivoProcesos(nombreArchivo, cola);
 
@@ -35,16 +37,22 @@ int main() {
     cout << "2. Ejecución por Prioridad\n";
     cout << "Ingrese su opción (1 o 2): ";
     cin >> opcion;
-
+    string resultado;
     if (opcion == 1) {
-        planificador.ejecutarRoundRobin();
+        resultado = planificador.ejecutarRoundRobin();
+        
     } else if (opcion == 2) {
         planificador.ejecutarPorPrioridad();
     } else {
         cout << "Finalizando el programa";
     }
-
-    cout << "completado";
-
+    string salidaEsperada;
+    cout << "Ingrese el nombre del archivo con la salida esperada: ";
+    cin >> salidaEsperada;
+    Simulador simulador;
+    simulador.compararArchivos(salidaEsperada, resultado);
+    string resultadoComparacion;
+    resultadoComparacion = simulador.compararArchivos(salidaEsperada, resultado);
+    cout << resultadoComparacion;
     return 0;
 }

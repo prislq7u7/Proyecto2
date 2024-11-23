@@ -8,6 +8,7 @@
 #include "procesos.h"
 #include <iostream>
 #include <string>
+#include <fstream> 
 
 using namespace std;
 
@@ -20,7 +21,7 @@ private:
 public:
     Planificador(int quantum);
     void agregarProceso(T* proceso);
-    void ejecutarRoundRobin();
+    string ejecutarRoundRobin();
     void ejecutarPorPrioridad();
 };
 
@@ -35,36 +36,54 @@ void Planificador<T>::agregarProceso(T* proceso) {
 }
 
 //Round Robin
+
+
 template <typename T>
-void Planificador<T>::ejecutarRoundRobin() {
-    int iteracion = 0;//para contar las iteraciones
+std::string Planificador<T>::ejecutarRoundRobin() {
+    std::string nombreArchivo = "resultado_round_robin.txt";
+    std::ofstream archivo(nombreArchivo); // Crea/abre el archivo de texto
+
+    if (!archivo.is_open()) {
+        std::cerr << "Error al abrir el archivo para escribir.\n";
+        return "";
+    }
+
+    int iteracion = 0; // Para contar las iteraciones
     while (true) {
-        
-        cout << "Iteración: " << ++iteracion << "\n";
+        archivo << "Iteración: " << ++iteracion << "\n";
+        cout << "Iteración: " << iteracion << "\n";
+
+        archivo << "Estado actual de la cola:\n" << colaProcesos.toString() << "\n";
         cout << "Estado actual de la cola:\n" << colaProcesos.toString() << "\n";
 
         // Obtener el siguiente proceso de la cola
         T* proceso = colaProcesos.pop();
         if (proceso == nullptr) {
+            archivo << "La cola está vacía. Terminando Round Robin.\n";
             cout << "La cola está vacía. Terminando Round Robin.\n";
             break;
         }
 
+        archivo << "Proceso actual: " << proceso->getNombre() << " (Estado: " << proceso->getEstado() << ")\n";
         cout << "Proceso actual: " << proceso->getNombre() << " (Estado: " << proceso->getEstado() << ")\n";
 
         if (proceso->getEstado() == "finalizado") {
+            archivo << "Proceso " << proceso->getNombre() << " ya finalizado. No será procesado nuevamente.\n";
             cout << "Proceso " << proceso->getNombre() << " ya finalizado. No será procesado nuevamente.\n";
             continue;
         }
 
         proceso->cambiarEstado("en ejecución");
+        archivo << "Ejecutando proceso: " << proceso->getNombre() << "\n";
         cout << "Ejecutando proceso: " << proceso->getNombre() << "\n";
 
-        //ejecutar el proceso durante el quantum o hasta que termine
+        // Ejecutar el proceso durante el quantum o hasta que termine
         for (int i = 0; i < quantum; ++i) {
+            archivo << "Ejecutando instrucción " << (i + 1) << " de " << quantum << "\n";
             cout << "Ejecutando instrucción " << (i + 1) << " de " << quantum << "\n";
 
             if (proceso->getEstado() == "finalizado") {
+                archivo << "Proceso " << proceso->getNombre() << " ha finalizado durante la ejecución.\n";
                 cout << "Proceso " << proceso->getNombre() << " ha finalizado durante la ejecución.\n";
                 break;
             }
@@ -73,14 +92,21 @@ void Planificador<T>::ejecutarRoundRobin() {
         }
 
         if (proceso->getEstado() != "finalizado") {
+            archivo << "Proceso " << proceso->getNombre() << " no terminó. Cambiando estado a 'listo'.\n";
             cout << "Proceso " << proceso->getNombre() << " no terminó. Cambiando estado a 'listo'.\n";
             proceso->cambiarEstado("listo");
             colaProcesos.push(proceso);
         } else {
+            archivo << "Proceso " << proceso->getNombre() << " ha sido completado.\n";
             cout << "Proceso " << proceso->getNombre() << " ha sido completado.\n";
         }
     }
+
+    archivo << "Round Robin completado. Todos los procesos han sido gestionados.\n";
     cout << "Round Robin completado. Todos los procesos han sido gestionados.\n";
+
+    archivo.close(); // Cierra el archivo al finalizar
+    return nombreArchivo; // Devuelve el nombre del archivo generado
 }
 
 
