@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+using namespace std;
 
 Simulador::Simulador() {}
 
@@ -50,23 +51,23 @@ void Simulador::leerArchivoProcesos(const string& nombreArchivo, Cola<ProcesoBas
 
     archivo.close(); 
 }
-std::string Simulador::compararArchivos(const std::string& archivoEsperado, const std::string& archivoSalida) {
-    std::ifstream archivo1(archivoEsperado);  // Archivo con salida esperada
-    std::ifstream archivo2(archivoSalida);    // Archivo con salida del programa
+string Simulador::compararArchivos(const string& archivoEsperado, const string& archivoSalida) {
+    ifstream archivo1(archivoEsperado);  // Archivo con salida esperada
+    ifstream archivo2(archivoSalida);    // Archivo con salida del programa
 
     // Comprobar si ambos archivos se abren correctamente
     if (!archivo1.is_open() || !archivo2.is_open()) {
         return "Error al abrir uno de los archivos.";
     }
 
-    std::string linea1, linea2;
+    string linea1, linea2;
     int lineaActual = 0;
 
     // Leer ambos archivos línea por línea y compararlas
-    while (std::getline(archivo1, linea1) && std::getline(archivo2, linea2)) {
+    while (getline(archivo1, linea1) && getline(archivo2, linea2)) {
         ++lineaActual;
         if (linea1 != linea2) {
-            return "Diferencia encontrada en línea " + std::to_string(lineaActual) + 
+            return "Diferencia encontrada en línea " + to_string(lineaActual) + 
                    ":\nEsperada: " + linea1 + "\nObtenida: " + linea2;
         }
     }

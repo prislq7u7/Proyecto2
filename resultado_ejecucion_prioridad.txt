@@ -1,0 +1,54 @@
+Ordenando procesos por prioridad
+Insertando proceso: nombre1 con prioridad 4
+Insertando proceso: nombre2 con prioridad 7
+Insertando proceso: nombre3 con prioridad 5
+Insertando proceso: nombre4 con prioridad 8
+Insertando proceso: nombre5 con prioridad 1
+Insertando proceso: nombre6 con prioridad 2
+Insertando proceso: nombre7 con prioridad 6
+Insertando proceso: nombre8 con prioridad 0
+Insertando proceso: nombre9 con prioridad 3
+Insertando proceso: nombre10 con prioridad 9
+Ejecutando procesos en orden de prioridad
+Ejecutando proceso: nombre8 (Prioridad: 0)
+Estado actual: en ejecucion Subestado: activo
+Ejecutando instrucción...
+Proceso nombre8 finalizado
+Ejecutando proceso: nombre5 (Prioridad: 1)
+Estado actual: en ejecucion Subestado: activo
+Ejecutando instrucción...
+Proceso nombre5 finalizado
+Ejecutando proceso: nombre6 (Prioridad: 2)
+Estado actual: en ejecucion Subestado: activo
+Ejecutando instrucción...
+Proceso nombre6 finalizado
+Ejecutando proceso: nombre9 (Prioridad: 3)
+Estado actual: en ejecucion Subestado: activo
+Ejecutando instrucción...
+Proceso nombre9 finalizado
+Ejecutando proceso: nombre1 (Prioridad: 4)
+Estado actual: en ejecucion Subestado: activo
+Ejecutando instrucción...
+Proceso nombre1 finalizado
+Ejecutando proceso: nombre3 (Prioridad: 5)
+Estado actual: en ejecucion Subestado: activo
+Ejecutando instrucción...
+Proceso nombre3 finalizado
+Ejecutando proceso: nombre7 (Prioridad: 6)
+Estado actual: en ejecucion Subestado: activo
+Ejecutando instrucción...
+Proceso nombre7 finalizado
+Ejecutando proceso: nombre2 (Prioridad: 7)
+Estado actual: en ejecucion Subestado: activo
+Ejecutando instrucción...
+Proceso nombre2 finalizado
+Ejecutando proceso: nombre4 (Prioridad: 8)
+Estado actual: en ejecucion Subestado: activo
+Ejecutando instrucción...
+Proceso nombre4 finalizado
+Ejecutando proceso: nombre10 (Prioridad: 9)
+Estado actual: en ejecucion Subestado: activo
+Ejecutando instrucción...
+Proceso nombre10 finalizado
+Todos los procesos han sido ejecutados
+Ejecución por prioridad completada

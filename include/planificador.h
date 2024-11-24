@@ -22,7 +22,7 @@ public:
     Planificador(int quantum);
     void agregarProceso(T* proceso);
     string ejecutarRoundRobin();
-    void ejecutarPorPrioridad();
+    string ejecutarPorPrioridad();
 };
 
 //constructor
@@ -127,18 +127,32 @@ string Planificador<T>::ejecutarRoundRobin() {
 
 
 //por Prioridad
+
 template <typename T>
-void Planificador<T>::ejecutarPorPrioridad() {
+string Planificador<T>::ejecutarPorPrioridad() {
+    string nombreArchivo = "resultado_ejecucion_prioridad.txt";
+    ofstream archivo(nombreArchivo); 
+
+    if (!archivo.is_open()) {
+        cerr << "Error al abrir el archivo para escribir.\n";
+        return "";
+    }
+
+    archivo << "Ordenando procesos por prioridad\n";
     cout << "Ordenando procesos por prioridad\n";
+
     Cola<T> colaOrdenada;
 
-    // extrae todos los procesos de la cola original
+    // Extraer todos los procesos de la cola original
     while (true) {
         T* procesoActual = colaProcesos.pop();
         if (procesoActual == nullptr) {
             break;
         }
-        cout << "Insertando proceso: " << procesoActual->getNombre() 
+
+        archivo << "Insertando proceso: " << procesoActual->getNombre()
+                << " con prioridad " << procesoActual->getPrioridad() << "\n";
+        cout << "Insertando proceso: " << procesoActual->getNombre()
              << " con prioridad " << procesoActual->getPrioridad() << "\n";
 
         Nodo<T>* nuevoNodo = new Nodo<T>(procesoActual);
@@ -153,44 +167,60 @@ void Planificador<T>::ejecutarPorPrioridad() {
             }
 
             if (anterior == nullptr) {
-                // Insercion al inicio de la lista
+                // Inserción al inicio de la lista
                 nuevoNodo->sig = colaOrdenada.cabeza;
                 colaOrdenada.cabeza = nuevoNodo;
             } else {
-                // Insercion en el medio o al final
+                // Inserción en el medio o al final
                 nuevoNodo->sig = actual;
                 anterior->sig = nuevoNodo;
             }
         }
     }
 
-    // ejecuta procesos en orden de prioridad
+    // Ejecutar procesos en orden de prioridad
+    archivo << "Ejecutando procesos en orden de prioridad\n";
     cout << "Ejecutando procesos en orden de prioridad\n";
+
     while (true) {
         T* proceso = colaOrdenada.pop();
         if (proceso == nullptr) {
+            archivo << "Todos los procesos han sido ejecutados\n";
             cout << "Todos los procesos han sido ejecutados\n";
             break;
         }
 
-        cout << "Ejecutando proceso: " << proceso->getNombre() 
+        archivo << "Ejecutando proceso: " << proceso->getNombre()
+                << " (Prioridad: " << proceso->getPrioridad() << ")\n";
+        cout << "Ejecutando proceso: " << proceso->getNombre()
              << " (Prioridad: " << proceso->getPrioridad() << ")\n";
 
         proceso->cambiarEstado("en ejecucion");
         proceso->cambiarSubestado("activo");
+
+        archivo << "Estado actual: " << proceso->getEstado() << " "
+                << "Subestado: " << proceso->getSubestado() << "\n";
         cout << "Estado actual: " << proceso->getEstado() << " "
-        << "Subestado: " << proceso->getSubestado() << endl;
+             << "Subestado: " << proceso->getSubestado() << endl;
 
         while (proceso->getEstado() != "finalizado") {
             proceso->ejecutarInstruccion();
-            this_thread::sleep_for(chrono::milliseconds(1000)); // Simula 1 ciclo por instruccion
+            archivo << "Ejecutando instrucción...\n";
+            cout << "Ejecutando instrucción...\n";
+
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // Simula 1 ciclo por instrucción
         }
 
         proceso->cambiarSubestado("");
+        archivo << "Proceso " << proceso->getNombre() << " finalizado\n";
         cout << "Proceso " << proceso->getNombre() << " finalizado\n";
     }
 
-    cout << "Ejecucion por prioridad completada\n";
+    archivo << "Ejecución por prioridad completada\n";
+    cout << "Ejecución por prioridad completada\n";
+
+    archivo.close(); 
+    return nombreArchivo; 
 }
 
 

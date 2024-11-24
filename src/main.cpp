@@ -16,8 +16,7 @@ int main() {
     string nombreArchivo;
     cout << "Ingrese el nombre del archivo a abrir (con extension): ";
     cin >> nombreArchivo;
-    //Simulador simulador;
-   // simulador.leerArchivoProcesos(nombreArchivo, cola);
+    
     //leer proceso desde el archivo
     leerArchivoProcesos(nombreArchivo, cola);
 
@@ -42,7 +41,7 @@ int main() {
         resultado = planificador.ejecutarRoundRobin();
         
     } else if (opcion == 2) {
-        planificador.ejecutarPorPrioridad();
+        resultado = planificador.ejecutarPorPrioridad();
     } else {
         cout << "Finalizando el programa";
     }
