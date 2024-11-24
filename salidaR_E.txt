@@ -1,0 +1,122 @@
+Iteracion: 1
+Estado actual de la cola:
+Elemento: Nombre: programa1, Prioridad: 0, Estado: Listo, Subestado: Cortado
+Elemento: Nombre: programa2, Prioridad: 9, Estado: Listo, Subestado: Cortado
+Elemento: Nombre: programa3, Prioridad: 1, Estado: finalizado
+Elemento: Nombre: programa4, Prioridad: 8, Estado: finalizado
+Elemento: Nombre: programa5, Prioridad: 2, Estado: finalizado
+Elemento: Nombre: programa6, Prioridad: 7, Estado: finalizado
+Elemento: Nombre: programa7, Prioridad: 3, Estado: finalizado
+Elemento: Nombre: programa8, Prioridad: 6, Estado: finalizado
+Elemento: Nombre: programa9, Prioridad: 4, Estado: finalizado
+Elemento: Nombre: programa10, Prioridad: 5, Estado: finalizado
+
+Proceso actual: programa1 (Estado: Listo)
+Ejecutando proceso: programa1
+Estado actual: en ejecucion
+Subestado: activo
+Ejecutando instruccion 1 de 5
+Ejecutando instruccion 2 de 5
+Proceso programa1 ha finalizado durante la ejecucion
+Proceso programa1 ha sido completado
+Iteracion: 2
+Estado actual de la cola:
+Elemento: Nombre: programa2, Prioridad: 9, Estado: Listo, Subestado: Cortado
+Elemento: Nombre: programa3, Prioridad: 1, Estado: finalizado
+Elemento: Nombre: programa4, Prioridad: 8, Estado: finalizado
+Elemento: Nombre: programa5, Prioridad: 2, Estado: finalizado
+Elemento: Nombre: programa6, Prioridad: 7, Estado: finalizado
+Elemento: Nombre: programa7, Prioridad: 3, Estado: finalizado
+Elemento: Nombre: programa8, Prioridad: 6, Estado: finalizado
+Elemento: Nombre: programa9, Prioridad: 4, Estado: finalizado
+Elemento: Nombre: programa10, Prioridad: 5, Estado: finalizado
+
+Proceso actual: programa2 (Estado: Listo)
+Ejecutando proceso: programa2
+Estado actual: en ejecucion
+Subestado: activo
+Ejecutando instruccion 1 de 5
+Ejecutando instruccion 2 de 5
+Proceso programa2 ha finalizado durante la ejecucion
+Proceso programa2 ha sido completado
+Iteracion: 3
+Estado actual de la cola:
+Elemento: Nombre: programa3, Prioridad: 1, Estado: finalizado
+Elemento: Nombre: programa4, Prioridad: 8, Estado: finalizado
+Elemento: Nombre: programa5, Prioridad: 2, Estado: finalizado
+Elemento: Nombre: programa6, Prioridad: 7, Estado: finalizado
+Elemento: Nombre: programa7, Prioridad: 3, Estado: finalizado
+Elemento: Nombre: programa8, Prioridad: 6, Estado: finalizado
+Elemento: Nombre: programa9, Prioridad: 4, Estado: finalizado
+Elemento: Nombre: programa10, Prioridad: 5, Estado: finalizado
+
+Proceso actual: programa3 (Estado: finalizado)
+Proceso programa3 ya finalizado
+Iteracion: 4
+Estado actual de la cola:
+Elemento: Nombre: programa4, Prioridad: 8, Estado: finalizado
+Elemento: Nombre: programa5, Prioridad: 2, Estado: finalizado
+Elemento: Nombre: programa6, Prioridad: 7, Estado: finalizado
+Elemento: Nombre: programa7, Prioridad: 3, Estado: finalizado
+Elemento: Nombre: programa8, Prioridad: 6, Estado: finalizado
+Elemento: Nombre: programa9, Prioridad: 4, Estado: finalizado
+Elemento: Nombre: programa10, Prioridad: 5, Estado: finalizado
+
+Proceso actual: programa4 (Estado: finalizado)
+Proceso programa4 ya finalizado
+Iteracion: 5
+Estado actual de la cola:
+Elemento: Nombre: programa5, Prioridad: 2, Estado: finalizado
+Elemento: Nombre: programa6, Prioridad: 7, Estado: finalizado
+Elemento: Nombre: programa7, Prioridad: 3, Estado: finalizado
+Elemento: Nombre: programa8, Prioridad: 6, Estado: finalizado
+Elemento: Nombre: programa9, Prioridad: 4, Estado: finalizado
+Elemento: Nombre: programa10, Prioridad: 5, Estado: finalizado
+
+Proceso actual: programa5 (Estado: finalizado)
+Proceso programa5 ya finalizado
+Iteracion: 6
+Estado actual de la cola:
+Elemento: Nombre: programa6, Prioridad: 7, Estado: finalizado
+Elemento: Nombre: programa7, Prioridad: 3, Estado: finalizado
+Elemento: Nombre: programa8, Prioridad: 6, Estado: finalizado
+Elemento: Nombre: programa9, Prioridad: 4, Estado: finalizado
+Elemento: Nombre: programa10, Prioridad: 5, Estado: finalizado
+
+Proceso actual: programa6 (Estado: finalizado)
+Proceso programa6 ya finalizado
+Iteracion: 7
+Estado actual de la cola:
+Elemento: Nombre: programa7, Prioridad: 3, Estado: finalizado
+Elemento: Nombre: programa8, Prioridad: 6, Estado: finalizado
+Elemento: Nombre: programa9, Prioridad: 4, Estado: finalizado
+Elemento: Nombre: programa10, Prioridad: 5, Estado: finalizado
+
+Proceso actual: programa7 (Estado: finalizado)
+Proceso programa7 ya finalizado
+Iteracion: 8
+Estado actual de la cola:
+Elemento: Nombre: programa8, Prioridad: 6, Estado: finalizado
+Elemento: Nombre: programa9, Prioridad: 4, Estado: finalizado
+Elemento: Nombre: programa10, Prioridad: 5, Estado: finalizado
+
+Proceso actual: programa8 (Estado: finalizado)
+Proceso programa8 ya finalizado
+Iteracion: 9
+Estado actual de la cola:
+Elemento: Nombre: programa9, Prioridad: 4, Estado: finalizado
+Elemento: Nombre: programa10, Prioridad: 5, Estado: finalizado
+
+Proceso actual: programa9 (Estado: finalizado)
+Proceso programa9 ya finalizado
+Iteracion: 10
+Estado actual de la cola:
+Elemento: Nombre: programa10, Prioridad: 5, Estado: finalizado
+
+Proceso actual: programa10 (Estado: finalizado)
+Proceso programa10 ya finalizado
+Iteracion: 11
+Estado actual de la cola:
+
+La cola está vacía. Terminando Round Robin.
+Round Robin completado. Todos los procesos han sido gestionados.

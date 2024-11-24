@@ -14,9 +14,21 @@ int main() {
     Planificador<ProcesoBase> planificador(quantum);
 
     string nombreArchivo;
-    cout << "Ingrese el nombre del archivo a abrir (con extension): ";
-    cin >> nombreArchivo;
-    
+    bool archivoAbierto = false;
+
+    // Solicitar archivo hasta que se abra correctamente
+    while (!archivoAbierto) {
+        cout << "Ingrese el nombre del archivo a abrir (con extension): ";
+        cin >> nombreArchivo;
+
+        ifstream archivo(nombreArchivo);
+        if (archivo.is_open()) {
+            archivoAbierto = true;
+            archivo.close();
+        } else {
+            cerr << "Error al abrir el archivo: " << nombreArchivo << ". Intente de nuevo.\n";
+        }
+    }
     //leer proceso desde el archivo
     leerArchivoProcesos(nombreArchivo, cola);
 
@@ -37,21 +49,24 @@ int main() {
     cout << "Ingrese su opcion (1 o 2): ";
     cin >> opcion;
     string resultado;
+    
     if (opcion == 1) {
         resultado = planificador.ejecutarRoundRobin();
         
     } else if (opcion == 2) {
         resultado = planificador.ejecutarPorPrioridad();
-    } else {
-        cout << "Finalizando el programa";
+    } 
+    if(opcion == 1 || opcion == 2){
+        string salidaEsperada;
+        cout << "Ingrese el nombre del archivo con la salida esperada: ";
+        cin >> salidaEsperada;
+        Simulador simulador;
+        simulador.compararArchivos(salidaEsperada, resultado);
+        string resultadoComparacion;
+        resultadoComparacion = simulador.compararArchivos(salidaEsperada, resultado);
+        cout << resultadoComparacion;
+    }else {
+        cout<< "Opción inválida";
     }
-    string salidaEsperada;
-    cout << "Ingrese el nombre del archivo con la salida esperada: ";
-    cin >> salidaEsperada;
-    Simulador simulador;
-    simulador.compararArchivos(salidaEsperada, resultado);
-    string resultadoComparacion;
-    resultadoComparacion = simulador.compararArchivos(salidaEsperada, resultado);
-    cout << resultadoComparacion;
     return 0;
 }

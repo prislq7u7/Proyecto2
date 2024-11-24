@@ -8,11 +8,6 @@
 //funcion: leer procesos desde un archivo
 void leerArchivoProcesos(const string& nombreArchivo, Cola<ProcesoBase>& cola) {
     ifstream archivo(nombreArchivo);//abrir archivo
-    if (!archivo.is_open()) {
-        cerr << "Error al abrir el archivo: " << nombreArchivo << endl;
-        return;
-    }
-
     string linea;
     //leer línea por línea
     while (getline(archivo, linea)) {
