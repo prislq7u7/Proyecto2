@@ -41,32 +41,44 @@ int main() {
         proceso->ejecutarInstruccion();  //ejecutar instruccion del proceso
         planificador.agregarProceso(proceso);
     }
-
-    int opcion;
+    
     cout << "\nSeleccione el algoritmo de planificacion:\n";
     cout << "1. Round Robin\n";
     cout << "2. Ejecucion por Prioridad\n";
     cout << "Ingrese su opcion (1 o 2): ";
-    cin >> opcion;
+    int opcion = 0;
     string resultado;
+
+    while (true) {
+        cin >> opcion;
     
+        if (cin.fail()) {
+            cin.clear(); //limpia el error en el cin
+            cin.ignore(1000, '\n'); //descarta el error
+            cout << "Entrada inválida. Por favor, ingrese un número (1 o 2): ";
+            continue;
+        }
+
+        //validar la opcion
+        if (opcion == 1 || opcion == 2) {
+            break;
+        } else {
+            cout << "Opción inválida. Por favor, ingrese 1 o 2: ";
+        }
+    }
+
     if (opcion == 1) {
         resultado = planificador.ejecutarRoundRobin();
-        
     } else if (opcion == 2) {
         resultado = planificador.ejecutarPorPrioridad();
-    } 
-    if(opcion == 1 || opcion == 2){
-        string salidaEsperada;
-        cout << "Ingrese el nombre del archivo con la salida esperada: ";
-        cin >> salidaEsperada;
-        Simulador simulador;
-        simulador.compararArchivos(salidaEsperada, resultado);
-        string resultadoComparacion;
-        resultadoComparacion = simulador.compararArchivos(salidaEsperada, resultado);
-        cout << resultadoComparacion;
-    }else {
-        cout<< "Opción inválida";
     }
+
+    string salidaEsperada;
+    cout << "Ingrese el nombre del archivo con la salida esperada: ";
+    cin >> salidaEsperada;
+    Simulador simulador;
+    string resultadoComparacion = simulador.compararArchivos(salidaEsperada, resultado);
+    cout << resultadoComparacion << endl;
+
     return 0;
 }
