@@ -18,8 +18,9 @@ int main() {
 
     //solicitar archivo hasta que se abra correctamente
     while (!archivoAbierto) {
-        cout << "Ingrese el nombre del archivo a abrir (con extension): ";
+        cout << "Ingrese el nombre del archivo a abrir (sin extension): ";
         cin >> nombreArchivo;
+        nombreArchivo = "tests/" + nombreArchivo + ".txt";
 
         ifstream archivo(nombreArchivo);
         if (archivo.is_open()) {
@@ -76,6 +77,7 @@ int main() {
     string salidaEsperada;
     cout << "Ingrese el nombre del archivo con la salida esperada: ";
     cin >> salidaEsperada;
+    salidaEsperada = "tests/" + salidaEsperada + ".txt";
     Simulador simulador;
     string resultadoComparacion = simulador.compararArchivos(salidaEsperada, resultado);
     cout << resultadoComparacion << endl;
