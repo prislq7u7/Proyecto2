@@ -62,14 +62,19 @@ string Simulador::compararArchivos(const string& archivoEsperado, const string& 
 
     string linea1, linea2;
     int lineaActual = 0;
+    string diferencias;
 
     //lee ambos archivos línea por línea y compara
     while (getline(archivo1, linea1) && getline(archivo2, linea2)) {
         ++lineaActual;
         if (linea1 != linea2) {
-            return "Diferencia encontrada en línea " + to_string(lineaActual) + 
+            diferencias += "\nDiferencia encontrada en línea " + to_string(lineaActual) + 
                    ":\nEsperada: " + linea1 + "\nObtenida: " + linea2;
         }
+    }
+
+    if (!diferencias.empty()){
+        return diferencias; //se retornan las diferencias encontradas
     }
 
     return "La salida es igual a la esperada.";

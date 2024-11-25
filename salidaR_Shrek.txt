@@ -9,10 +9,9 @@ Ejecutando proceso: fiona1
 Estado actual: en ejecucion
 Subestado: activo
 Ejecutando instruccion 1 de 5
-Ejecutando instruccion normal del proceso: fiona1
 Ejecutando instruccion 2 de 5
 Proceso fiona1 ha finalizado durante la ejecucion
-Proceso fiona1 ha sido completado.
+Proceso fiona1 ha sido completado
 Iteracion: 2
 Estado actual de la cola:
 Elemento: Nombre: burro2, Prioridad: 5, Estado: Listo, Subestado: Cortado
@@ -23,10 +22,9 @@ Ejecutando proceso: burro2
 Estado actual: en ejecucion
 Subestado: activo
 Ejecutando instruccion 1 de 5
-Ejecutando instruccion normal del proceso: burro2
 Ejecutando instruccion 2 de 5
 Proceso burro2 ha finalizado durante la ejecucion
-Proceso burro2 ha sido completado.
+Proceso burro2 ha sido completado
 Iteracion: 3
 Estado actual de la cola:
 Elemento: Nombre: LordFarquad3, Prioridad: 2, Estado: finalizado
@@ -36,65 +34,5 @@ Proceso LordFarquad3 ya finalizado
 Iteracion: 4
 Estado actual de la cola:
 
-La cola est├í vac├¡a. Terminando Round Robin.
-Round Robin completado. Todos los procesos han sido gestionados.
-Ingrese el nombre del archivo con la salida esperada: salidaR_Jose.txt
-Diferencia encontrada en l├¡nea 3:
-Esperada: Elemento: Nombre: nombre1, Prioridad: 4, Estado: Listo, Subestado: Cortado
-Obtenida: Elemento: Nombre: fiona1, Prioridad: 3, Estado: Listo, Subestado: Cortado
-PS C:\Users\prisl\Desktop\Proyecto2> ./bin/Proyecto2
-Ingrese el nombre del archivo a abrir (con extension): shrek.txt
-Cola cargada desde archivo:
-Elemento: Nombre: fiona1, Prioridad: 3, Estado: Listo
-Elemento: Nombre: burro2, Prioridad: 5, Estado: Listo
-Elemento: Nombre: LordFarquad3, Prioridad: 2, Estado: Listo
-
-Ejecutando instruccion normal del proceso: fiona1
-Ejecutando instruccion normal del proceso: burro2
-Inicio de operacion de E/S en el proceso: LordFarquad3
-Fin de operacion de E/S en el proceso: LordFarquad3
-
-Seleccione el algoritmo de planificacion:
-1. Round Robin
-2. Ejecucion por Prioridad
-Ingrese su opcion (1 o 2): 1
-Iteracion: 1
-Estado actual de la cola:
-Elemento: Nombre: fiona1, Prioridad: 3, Estado: Listo, Subestado: Cortado
-Elemento: Nombre: burro2, Prioridad: 5, Estado: Listo, Subestado: Cortado
-Elemento: Nombre: LordFarquad3, Prioridad: 2, Estado: finalizado
-
-Proceso actual: fiona1 (Estado: Listo)
-Ejecutando proceso: fiona1
-Estado actual: en ejecucion
-Subestado: activo
-Ejecutando instruccion 1 de 5
-Ejecutando instruccion normal del proceso: fiona1
-Ejecutando instruccion 2 de 5
-Proceso fiona1 ha finalizado durante la ejecucion
-Proceso fiona1 ha sido completado.
-Iteracion: 2
-Estado actual de la cola:
-Elemento: Nombre: burro2, Prioridad: 5, Estado: Listo, Subestado: Cortado
-Elemento: Nombre: LordFarquad3, Prioridad: 2, Estado: finalizado
-
-Proceso actual: burro2 (Estado: Listo)
-Ejecutando proceso: burro2
-Estado actual: en ejecucion
-Subestado: activo
-Ejecutando instruccion 1 de 5
-Ejecutando instruccion normal del proceso: burro2
-Ejecutando instruccion 2 de 5
-Proceso burro2 ha finalizado durante la ejecucion
-Proceso burro2 ha sido completado.
-Iteracion: 3
-Estado actual de la cola:
-Elemento: Nombre: LordFarquad3, Prioridad: 2, Estado: finalizado
-
-Proceso actual: LordFarquad3 (Estado: finalizado)
-Proceso LordFarquad3 ya finalizado
-Iteracion: 4
-Estado actual de la cola:
-
-La cola est├í vac├¡a. Terminando Round Robin.
+La cola está vacía. Terminando Round Robin.
 Round Robin completado. Todos los procesos han sido gestionados.
