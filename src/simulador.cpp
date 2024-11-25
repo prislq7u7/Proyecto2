@@ -52,10 +52,10 @@ void Simulador::leerArchivoProcesos(const string& nombreArchivo, Cola<ProcesoBas
     archivo.close(); 
 }
 string Simulador::compararArchivos(const string& archivoEsperado, const string& archivoSalida) {
-    ifstream archivo1(archivoEsperado);  // Archivo con salida esperada
-    ifstream archivo2(archivoSalida);    // Archivo con salida del programa
+    ifstream archivo1(archivoEsperado);//archivo con salida esperada
+    ifstream archivo2(archivoSalida);//archivo con salida del programa
 
-    // Comprobar si ambos archivos se abren correctamente
+    //comprueba si ambos archivos se abren correctamente
     if (!archivo1.is_open() || !archivo2.is_open()) {
         return "Error al abrir uno de los archivos.";
     }
@@ -63,7 +63,7 @@ string Simulador::compararArchivos(const string& archivoEsperado, const string& 
     string linea1, linea2;
     int lineaActual = 0;
 
-    // Leer ambos archivos línea por línea y compararlas
+    //lee ambos archivos línea por línea y compara
     while (getline(archivo1, linea1) && getline(archivo2, linea2)) {
         ++lineaActual;
         if (linea1 != linea2) {

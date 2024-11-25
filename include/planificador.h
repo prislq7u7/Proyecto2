@@ -29,7 +29,7 @@ public:
 template <typename T>
 Planificador<T>::Planificador(int quantum) : quantum(quantum) {}
 
-// agrega un proceso a la cola
+//agrega un proceso a la cola
 template <typename T>
 void Planificador<T>::agregarProceso(T* proceso) {
     colaProcesos.push(proceso);
@@ -39,14 +39,14 @@ void Planificador<T>::agregarProceso(T* proceso) {
 template <typename T>
 string Planificador<T>::ejecutarRoundRobin() {
     string nombreArchivo = "resultado_round_robin.txt";
-    ofstream archivo(nombreArchivo); // Crea/abre el archivo de texto
+    ofstream archivo(nombreArchivo);//crea/abre el archivo de texto
 
     if (!archivo.is_open()) {
         cerr << "Error al abrir el archivo para escribir.\n";
         return "";
     }
 
-    int iteracion = 0; // Para contar las iteraciones
+    int iteracion = 0; //para contar las iteraciones
     while (true) {
         archivo << "Iteracion: " << ++iteracion << "\n";
         cout << "Iteracion: " << iteracion << "\n";
@@ -54,7 +54,7 @@ string Planificador<T>::ejecutarRoundRobin() {
         archivo << "Estado actual de la cola:\n" << colaProcesos.toString() << "\n";
         cout << "Estado actual de la cola:\n" << colaProcesos.toString() << "\n";
 
-        // Obtener el siguiente proceso de la cola
+        //obtener el sig proceso de la cola
         T* proceso = colaProcesos.pop();
         if (proceso == nullptr) {
             archivo << "La cola está vacía. Terminando Round Robin.\n";
@@ -83,7 +83,7 @@ string Planificador<T>::ejecutarRoundRobin() {
             << "Subestado: " << proceso->getSubestado() << "\n";
 
 
-        // ejecuta el proceso durante el quantum o hasta que termine
+        //ejecuta el proceso durante el quantum o hasta que termine
         for (int i = 0; i < quantum; ++i) {
             archivo << "Ejecutando instruccion " << (i + 1) << " de " << quantum << "\n";
             cout << "Ejecutando instruccion " << (i + 1) << " de " << quantum << "\n";
@@ -94,7 +94,7 @@ string Planificador<T>::ejecutarRoundRobin() {
                 break;
             }
             proceso->ejecutarInstruccion();
-            this_thread::sleep_for(chrono::milliseconds(1000)); // Simula 1 segundo de ejecucion
+            this_thread::sleep_for(chrono::milliseconds(1000));//simula 1 segundo de ejecucion
         }
 
             if (proceso->getEstado() != "finalizado") {
@@ -121,8 +121,8 @@ string Planificador<T>::ejecutarRoundRobin() {
     archivo << "Round Robin completado. Todos los procesos han sido gestionados.\n";
     cout << "Round Robin completado. Todos los procesos han sido gestionados.\n";
 
-    archivo.close(); // Cierra el archivo al finalizar
-    return nombreArchivo; // Devuelve el nombre del archivo generado
+    archivo.close();//cierra el archivo al finalizar
+    return nombreArchivo;//evuelve el nombre del archivo generado
 }
 
 
@@ -143,7 +143,7 @@ string Planificador<T>::ejecutarPorPrioridad() {
 
     Cola<T> colaOrdenada;
 
-    // Extraer todos los procesos de la cola original
+    //extraer todos los procesos de la cola original
     while (true) {
         T* procesoActual = colaProcesos.pop();
         if (procesoActual == nullptr) {
@@ -167,18 +167,18 @@ string Planificador<T>::ejecutarPorPrioridad() {
             }
 
             if (anterior == nullptr) {
-                // Inserción al inicio de la lista
+            //inserción al inicio de la lista
                 nuevoNodo->sig = colaOrdenada.cabeza;
                 colaOrdenada.cabeza = nuevoNodo;
             } else {
-                // Inserción en el medio o al final
+            //inserción en el medio o al final
                 nuevoNodo->sig = actual;
                 anterior->sig = nuevoNodo;
             }
         }
     }
 
-    // Ejecutar procesos en orden de prioridad
+    //ejecutar procesos en orden de prioridad
     archivo << "Ejecutando procesos en orden de prioridad\n";
     cout << "Ejecutando procesos en orden de prioridad\n";
 
@@ -208,7 +208,7 @@ string Planificador<T>::ejecutarPorPrioridad() {
             archivo << "Ejecutando instrucción...\n";
             cout << "Ejecutando instrucción...\n";
 
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // Simula 1 ciclo por instrucción
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));//simula 1 ciclo por instrucción
         }
 
         proceso->cambiarSubestado("");

@@ -16,7 +16,7 @@ int main() {
     string nombreArchivo;
     bool archivoAbierto = false;
 
-    // Solicitar archivo hasta que se abra correctamente
+    //solicitar archivo hasta que se abra correctamente
     while (!archivoAbierto) {
         cout << "Ingrese el nombre del archivo a abrir (con extension): ";
         cin >> nombreArchivo;

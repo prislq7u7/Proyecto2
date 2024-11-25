@@ -7,8 +7,10 @@
 
 //funcion: leer procesos desde un archivo
 void leerArchivoProcesos(const string& nombreArchivo, Cola<ProcesoBase>& cola) {
+
     ifstream archivo(nombreArchivo);//abrir archivo
     string linea;
+
     //leer línea por línea
     while (getline(archivo, linea)) {
         if (linea.find("proceso") == 0) {//detectar proceso

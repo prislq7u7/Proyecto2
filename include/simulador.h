@@ -15,7 +15,7 @@ private:
 
 
 public:
-    // Constructor vacío
+//constructor vacío
     Simulador();
     ~Simulador(); 
 

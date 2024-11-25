@@ -52,7 +52,7 @@ void ProcesoNormal::ejecutarInstruccion() {
     cout << "Ejecutando instruccion normal del proceso: " << nombre << "\n";
     instruccionesEjecutadas++;
 
-    if (instruccionesEjecutadas >= 3) { // Ejemplo: termina tras 3 instrucciones
+    if (instruccionesEjecutadas >= 3) {
         cambiarEstado("finalizado");
         cambiarSubestado("");
     } else {
@@ -72,7 +72,7 @@ void ProcesoES::ejecutarInstruccion() {
     cambiarSubestado("Activo");
 
     cout << "Inicio de operacion de E/S en el proceso: " << nombre << "\n";
-    this_thread::sleep_for(chrono::milliseconds(1500)); // Simula operacion de E/S
+    this_thread::sleep_for(chrono::milliseconds(1500));//simula operacion de E/S
     cambiarEstado("finalizado");
     cambiarSubestado("");
     cout << "Fin de operacion de E/S en el proceso: " << nombre << "\n";

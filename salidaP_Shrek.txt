@@ -5,15 +5,19 @@ Insertando proceso: LordFarquad3 con prioridad 2
 Ejecutando procesos en orden de prioridad
 Ejecutando proceso: LordFarquad3 (Prioridad: 2)
 Estado actual: en ejecucion Subestado: activo
-Ejecutando instrucción...
+Inicio de operacion de E/S en el proceso: LordFarquad3
+Fin de operacion de E/S en el proceso: LordFarquad3
+Ejecutando instrucci├│n...
 Proceso LordFarquad3 finalizado
 Ejecutando proceso: fiona1 (Prioridad: 3)
 Estado actual: en ejecucion Subestado: activo
-Ejecutando instrucción...
+Ejecutando instruccion normal del proceso: fiona1
+Ejecutando instrucci├│n...
 Proceso fiona1 finalizado
 Ejecutando proceso: burro2 (Prioridad: 5)
 Estado actual: en ejecucion Subestado: activo
-Ejecutando instrucción...
+Ejecutando instruccion normal del proceso: burro2
+Ejecutando instrucci├│n...
 Proceso burro2 finalizado
 Todos los procesos han sido ejecutados
-Ejecución por prioridad completada
+Ejecuci├│n por prioridad completada

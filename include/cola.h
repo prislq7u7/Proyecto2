@@ -75,7 +75,7 @@ T* Cola<T>::pop() {
     return dato;                  //retornar el dato extraído
 }
 
-//convertir la cola a string para visualización
+//turn la cola a string 
 template <typename T>
 string Cola<T>::toString() const {
     stringstream ss;
